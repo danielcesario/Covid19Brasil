@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Covid19 Brasil</string>
+    <string name="country_label">País</string>
+    <string name="cases_label">Casos</string>
+    <string name="confirmed_label">Confirmados</string>
+    <string name="deaths_label">Mortes</string>
+    <string name="recovered_label">Recuperados</string>
+</resources>
