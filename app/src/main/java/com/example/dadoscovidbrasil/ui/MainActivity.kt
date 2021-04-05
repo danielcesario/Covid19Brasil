@@ -2,17 +2,14 @@ package com.example.dadoscovidbrasil.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.example.dadoscovidbrasil.R
-import com.example.dadoscovidbrasil.models.Country
 import com.example.dadoscovidbrasil.models.CountrySummary
 import com.example.dadoscovidbrasil.repositories.Covid19BrazilServiceAPI
 import com.example.dadoscovidbrasil.services.Covid19BrazilService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.dadoscovidbrasil.usecases.GetCountrySummary
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.get
 import java.text.NumberFormat
 
@@ -23,40 +20,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        val countryValue: TextView = findViewById(R.id.country_value)
-        val casesValue: TextView = findViewById(R.id.cases_value)
-        val confirmedValue: TextView = findViewById(R.id.confirmed_value)
-        val deathsValue: TextView = findViewById(R.id.deaths_value)
-        val recoveredValue: TextView = findViewById(R.id.recovered_value)
-
         val covid19BrazilServiceAPI: Covid19BrazilServiceAPI = get()
         val covid19BrazilService: Covid19BrazilService = covid19BrazilServiceAPI.getCovid19BrazilService()
+        val getCountrySummary = GetCountrySummary(covid19BrazilService)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val request = covid19BrazilService.getCountrySummary("brazil")
+        getCountrySummary.execute("brazil")
+        getCountrySummary.countrySummaryData.observe(this, Observer { countrySummary -> fillMainCard(countrySummary)})
+    }
 
-            withContext(Dispatchers.IO) {
-                try {
-                    val response = request.await()
-                    val any = if (response.isSuccessful) {
-                        var result: CountrySummary? = response.body()
-                        val country: Country = result!!.data
-                        Log.d("MainActivity", country.toString())
-                        countryValue.text = country.country
-                        casesValue.text = nf.format(country.cases)
-                        confirmedValue.text = nf.format(country.confirmed)
-                        deathsValue.text = nf.format(country.deaths)
-                        recoveredValue.text = nf.format(country.recovered)
-                    } else {
-                        //Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_SHORT)
-                        Log.d("MainActivity", "Error: ${response.code()}")
-                    }
-                    any
-                } catch (e: Exception) {
-                    //Toast.makeText(this@MainActivity, "Exception", Toast.LENGTH_SHORT)
-                    Log.d("MainActivity", "Exception ${e.message}")
-                }
-            }
-        }
+    fun fillMainCard(countrySummary: CountrySummary) {
+        Log.d("MainActivity", countrySummary.data.toString())
+        country_value.text = countrySummary.data.country
+        cases_value.text = nf.format(countrySummary.data.cases)
+        confirmed_value.text = nf.format(countrySummary.data.confirmed)
+        deaths_value.text = nf.format(countrySummary.data.deaths)
+        recovered_value.text = nf.format(countrySummary.data.recovered)
     }
 }
