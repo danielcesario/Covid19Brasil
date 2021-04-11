@@ -18,7 +18,8 @@ class CountryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.activity_country)
 
         val covid19BrazilServiceAPI: Covid19BrazilServiceAPI = get()
         val covid19BrazilService: Covid19BrazilService = covid19BrazilServiceAPI.getCovid19BrazilService()
