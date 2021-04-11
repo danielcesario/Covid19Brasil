@@ -5,4 +5,6 @@
     <string name="confirmed_label">Confirmados</string>
     <string name="deaths_label">Mortes</string>
     <string name="recovered_label">Recuperados</string>
+    <string name="state_label">Estado</string>
+    <string name="state_value_formated">%1$s - %2$s</string>
 </resources>
