@@ -1,6 +1,7 @@
 package com.example.dadoscovidbrasil.adapters
 
 import android.content.Context
+import android.icu.text.NumberFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dadoscovidbrasil.R
 import com.example.dadoscovidbrasil.models.State
 import kotlinx.android.synthetic.main.fragment_state_item.view.*
+import java.util.*
 
 class ListStateAdapter(
     private val states: List<State>,
@@ -28,8 +30,8 @@ class ListStateAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val state = states[position]
         holder.state.text = state.state
-        holder.cases.text = state.cases.toString()
-        holder.deaths.text = state.deaths.toString()
+        holder.cases.text = NumberFormat.getInstance(Locale.getDefault()).format(state.cases)
+        holder.deaths.text = NumberFormat.getInstance(Locale.getDefault()).format(state.deaths)
     }
 
     override fun getItemCount(): Int {

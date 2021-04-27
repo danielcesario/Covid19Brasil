@@ -18,17 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CountryActivity">
+        <activity android:name=".ui.CountryActivity" android:label="@string/activity_title_country">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-        <activity android:name=".ui.ListStatesActivity">
+        <activity android:name=".ui.ListStatesActivity" android:label="@string/activity_title_states">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-        <activity android:name=".ui.AboutActivity">
+        <activity android:name=".ui.AboutActivity" android:label="@string/activity_title_about">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />

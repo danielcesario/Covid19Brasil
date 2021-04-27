@@ -7,4 +7,7 @@
     <string name="recovered_label">Recuperados</string>
     <string name="state_label">Estado</string>
     <string name="title_activity_about">AboutActivity</string>
+    <string name="activity_title_country">Dados do Brasil</string>
+    <string name="activity_title_states">Dados dos Estados</string>
+    <string name="activity_title_about">Sobre a aplicação</string>
 </resources>
