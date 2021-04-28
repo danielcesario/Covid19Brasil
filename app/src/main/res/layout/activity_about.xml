@@ -8,14 +8,18 @@
     tools:context=".ui.AboutActivity"
     tools:deviceIds="wear">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="About"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/about_page_text_project"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="About"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="16dp"
+            android:textSize="16dp"
+            android:lineHeight="28dp"
+            android:textAlignment="gravity"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
